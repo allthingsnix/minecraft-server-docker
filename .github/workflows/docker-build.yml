@@ -13,7 +13,7 @@ jobs:
       - name: Build Images
         run: |
           while read i; do
-            docker build -t allthingsnix/minecraft:$i .
+            docker build -t allthingsnix/minecraft:$i --build-arg MCVERSION=$i .
           done < build-versions.txt
 
       - name: DEBUG
