@@ -1,0 +1,36 @@
+name: Docker Build and Publish
+
+on:
+  push:
+
+jobs:
+  get-build-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      BUILD_VERSIONS: ${{ steps.build-versions.outputs.BUILD_VERSIONS }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Read build-versions.txt
+        id: build-versions
+        run: |
+          echo "BUILD_VERSIONS=$(cat build-versions.txt)" >> $GITHUB_OUTPUT
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs:
+      - get-build-versions
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Build Images
+        run: |
+          for i in ${{ needs.get-build-versions.outputs.BUILD_VERSIONS }}; do
+            docker build -t allthingsnix/minecraft:$i .
+          done
+
+      - name: DEBUG
+        run: |
+          docker images
