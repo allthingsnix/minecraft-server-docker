@@ -1,5 +1,7 @@
 FROM openjdk:25-slim
 
+ARG MCVERSION
+
 # Set defaults for environment variables
 ENV MINECRAFT_PORT 25565
 ENV RCON_PORT 27015
@@ -52,7 +54,7 @@ RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/downloa
 
 # Setup the server
 RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar && \
-  java -jar fabric-installer.jar server -downloadMinecraft -mcversion 1.21.1
+  java -jar fabric-installer.jar server -downloadMinecraft -mcversion $MCVERSION
 
 # Copy the signed eula
 COPY ./eula.txt eula.txt
