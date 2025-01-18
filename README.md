@@ -1,7 +1,7 @@
 # AllThingsNix Minecraft Server Docker Image
 
 ## Description
-This is a minecraft server packaged in a docker image. This project is based on the work of [Hasicraft/minecraft](https://github.com/HashiCraft/Docker-Minecraft-Server-Fabric). 
+This is a minecraft server packaged in a docker image. This project is based on the work of [Hashicraft/minecraft](https://github.com/HashiCraft/Docker-Minecraft-Server-Fabric). 
 
 This repository contains a Minecraft server with the Forge modding tools installed for Docker. Docker containers are immutable instances therfore any changes
 you make to your Server across restarts will be lost. To save the state of your ensure the following container volumes are mapped to a local folder:
