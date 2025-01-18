@@ -1,0 +1,57 @@
+services:
+  server:
+    image: allthingsnix/minecraft:1.21.1
+    build: .
+    container_name: minecraft-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+    environment:
+      MINECRAFT_PORT: 25565
+      RCON_PORT: 27015
+      JAVA_MEMORY: 1G
+      RCON_ENABLED: false
+      WHITELIST_ENABLED: false
+      ALLOW_NETHER: false
+      GAME_MODE: creative
+      ENABLE_QUERY: false
+      PLAYER_IDLE_TIMEOUT: 0
+      DIFFICULTY: easy
+      SPAWN_MONSTERS: false
+      SPAWN_ANIMALS: false
+      SPAWN_NPCS: false
+      LEVEL_TYPE: default
+      PVP: false
+      BROADCAST_CONSOLE_TO_OPS: true
+      SPAWN_PROTECTION: 16
+      MAX_TICK_TIME: 60000
+      FORCE_GAMEMODE: true
+      #ENV GENERATOR_SETTINGS:
+      OP_PERMISSION_LEVEL: 4
+      SNOOPER_ENABLED: true
+      HARDCORE: false
+      ENABLE_COMMAND_BLOCK: false
+      MAX_PLAYERS: 10000
+      NETWORK_COMPRESSION_THRESHOLD: 256
+      #ENV RESOURCE_PACK_SHA1:
+      MAX_WORLD_SIZE: 29999984
+      #ENV SERVER_IP:
+      ALLOW_FLIGHT: true
+      LEVEL_NAME: world
+      VIEW_DISTANCE: 10
+      GENERATE_STRUCTURES: true
+      ONLINE_MODE: true
+      MAX_BUILD_HEIGHT: 256
+      #ENV LEVEL_SEED:
+      PREVENT_PROXY_CONNECTION: false
+    volumes:
+      - ./world:/minecraft/world
+      - ./config:/minecraft/config
+    ports:
+      - 25565:25565
+      - 27015:27015
