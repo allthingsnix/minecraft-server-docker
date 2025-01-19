@@ -42,7 +42,7 @@ services:
       MAX_WORLD_SIZE: 29999984
       #ENV SERVER_IP:
       ALLOW_FLIGHT: true
-      LEVEL_NAME: world
+      LEVEL_NAME: world # This is the name of the folder where your world if saved. This IS NOT the name of your server
       VIEW_DISTANCE: 10
       GENERATE_STRUCTURES: true
       ONLINE_MODE: true
